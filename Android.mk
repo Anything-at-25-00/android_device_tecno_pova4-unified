@@ -6,7 +6,7 @@
 
 LOCAL_PATH := $(call my-dir)
 
-ifeq ($(TARGET_DEVICE),LG8n)
+ifneq ($(filter LG7n LG8n,$(TARGET_DEVICE)),)
 
 include $(call all-makefiles-under,$(LOCAL_PATH))
 
@@ -17,7 +17,6 @@ AUDIO_SYMLINKS := \
 	$(TARGET_OUT_VENDOR)/lib/hw/audio.r_submix.$(TARGET_BOARD_PLATFORM).so \
 	$(TARGET_OUT_VENDOR)/lib64/hw/audio.primary.$(TARGET_BOARD_PLATFORM).so \
 	$(TARGET_OUT_VENDOR)/lib64/hw/audio.r_submix.$(TARGET_BOARD_PLATFORM).so
-
 
 $(AUDIO_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 	$(hide) echo "Linking $@"
@@ -66,7 +65,7 @@ $(SENSOR_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 	$(hide) echo "Linking $(notdir $@)"
 	@ln -sf sensors.mediatek.V2.0.so $@
 
-VENDOR_PLATFORM_SYMLINKS := $(addprefix $(TARGET_OUT_VENDOR)/, $(strip $(shell cat $(DEVICE_PATH)/symlink/vendor.txt)))
+VENDOR_PLATFORM_SYMLINKS := $(addprefix $(TARGET_OUT_VENDOR)/, $(strip $(shell cat $(COMMON_PATH)/symlink/vendor.txt)))
 $(VENDOR_PLATFORM_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 	$(hide) echo "Linking $(notdir $@)"
 	@ln -sf $(TARGET_BOARD_PLATFORM)/$(notdir $@) $@

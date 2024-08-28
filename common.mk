@@ -4,6 +4,8 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
+COMMON_PATH := device/tecno/pova4series-common
+
 # A/B
 $(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota/launch_with_vendor_ramdisk.mk)
 
@@ -42,10 +44,6 @@ PRODUCT_PACKAGES += \
 
 # Allow userspace reboots
 $(call inherit-product, $(SRC_TARGET_DIR)/product/userspace_reboot.mk)
-
-# AAPT
-PRODUCT_AAPT_CONFIG := normal
-PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 
 # Audio
 PRODUCT_PACKAGES += \
@@ -147,10 +145,8 @@ PRODUCT_PACKAGES += \
 
 # DRM
 PRODUCT_PACKAGES += \
+    android.hardware.drm@1.4.vendor \
     android.hardware.drm-service.clearkey
-
-PRODUCT_PACKAGES += \
-    android.hardware.drm@1.4.vendor
 
 # Dynamic partitions
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
@@ -341,15 +337,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/nfc/libnfc-slm.conf:$(TARGET_COPY_OUT_VENDOR)/etc/libnfc-slm.conf \
     $(LOCAL_PATH)/configs/nfc/libnfc-nxp_RF.conf:$(TARGET_COPY_OUT_VENDOR)/libnfc-nxp_RF.conf
 
-# Overlays
-PRODUCT_PACKAGES += \
-    CarrierConfigOverlay \
-	FrameworksResOverlayLG8n \
-	SettingsResOverlayLG8n \
-	SystemUIOverlayLG8n \
-	TelephonyOverlayLG8n \
-	WifiResOverlayLG8n
-
 # Lineage-Specific Overlays
 PRODUCT_PACKAGES += \
 	ApertureOverlay
@@ -411,8 +398,7 @@ PRODUCT_PACKAGES += \
     vendor.mediatek.hardware.mtkpower@1.1.vendor
 
 PRODUCT_PACKAGES += \
-    android.hardware.power@1.3.vendor \
-    libperfctl_vendor
+    android.hardware.power@1.3.vendor
 
 # Power | Dummy mtkperf lib
 PRODUCT_PACKAGES += \
@@ -441,6 +427,8 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     android.hardware.radio.config@1.3.vendor \
     android.hardware.radio@1.6.vendor \
+    libprotobuf-cpp-full.vendor \
+    libprotobuf-cpp-lite.vendor \
     libprotobuf-cpp-full-3.9.1-vendorcompat \
     libprotobuf-cpp-lite-3.9.1-vendorcompat
 
@@ -466,9 +454,6 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/sensors/hals.conf:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/hals.conf
-
-# Shipping API level
-PRODUCT_SHIPPING_API_LEVEL := 31
 
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
@@ -518,10 +503,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libui_shim.vendor
 
-# Vibrator
-PRODUCT_PACKAGES += \
-    android.hardware.vibrator-service.transsion
-
 # Wi-Fi
 PRODUCT_PACKAGES += \
     libwifi-hal-wrapper \
@@ -540,4 +521,4 @@ PRODUCT_COPY_FILES += \
     $(call find-copy-subdir-files,*,$(LOCAL_PATH)/configs/wifi/,$(TARGET_COPY_OUT_VENDOR)/etc/wifi)
 
 # Inherit the proprietary files
-$(call inherit-product, vendor/tecno/LG8n/LG8n-vendor.mk)
+$(call inherit-product, vendor/tecno/pova4series-common/pova4series-common-vendor.mk)
