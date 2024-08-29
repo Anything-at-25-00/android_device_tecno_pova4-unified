@@ -26,7 +26,6 @@ vendor/etc/init/audiocmdservice_atci.rc
 vendor/etc/AudioLog_dynamic.xml
 vendor/lib/hw/audio.primary.mediatek.so
 vendor/lib/hw/audio.r_submix.mediatek.so
-vendor/lib/hw/awinic.audio.effect.so
 vendor/lib/libMtkSpeechEnh.so
 vendor/lib/lib_iir.so
 vendor/lib/lib_speech_enh.so
@@ -93,8 +92,6 @@ vendor/lib64/libspeechparser_vendor.so
 vendor/lib64/vendor.mediatek.hardware.audio@6.1.so
 vendor/lib64/vendor.mediatek.hardware.audio@6.1.so
 vendor/lib64/vendor.mediatek.hardware.audio@7.1.so
-
-# Audio Configs
 
 # Bluetooth
 vendor/bin/hw/android.hardware.bluetooth@1.1-service-mediatek
@@ -1816,6 +1813,7 @@ vendor/lib64/libvcodec_oal.so
 vendor/lib64/libvcodecdrv_header_stub.so
 
 # Misc
+vendor/bin/hw/vendor.mediatek.hardware.tranHwInfo@1.0-service
 vendor/bin/md_monitor
 vendor/bin/meta_tst
 vendor/bin/mt6660_calibration
